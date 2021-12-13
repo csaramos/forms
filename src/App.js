@@ -1,8 +1,8 @@
 import { useRef } from "react";
 
 const App = () => {
-  const inputRef = useRef();
-  const fileRef = useRef();
+  const inputRef = useRef()
+  const fileRef = useRef()
 
   const handleSubmitForm = (e) => {
     console.log(inputRef.current.value);
