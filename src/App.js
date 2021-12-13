@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
 
-function App() {
+const App = () => {
+  const inputRef = useRef();
+  const fileRef = useRef();
+
+  const handleSubmitForm = (e) => {
+    console.log(inputRef.current.value);
+    console.log(fileRef.current.files[0]);
+    const form = new FormData()
+    form.append('file', fileRef.current.files[0])
+    form.append(inputRef.current.name, inputRef.current.value)
+    fetch('/lala', {method:'POST', body: form})
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <span>Lala</span>
+        <input ref={inputRef} type="text" name="campo" />
+        <input ref={fileRef} type="file" />
+      </div>
+      <input type="submit" value="Enviar" onClick={handleSubmitForm} />
     </div>
   );
-}
+};
 
 export default App;
